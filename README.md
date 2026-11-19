@@ -6,18 +6,18 @@ A static portfolio site for GitHub Pages. It has no build step.
 
 | Path | What it is |
 |---|---|
-| `data/content.js` | **Edit this file.** Name, college, section order, and every piece of work |
-| `data/crimson.js` | Backup list of Crimson articles, shown under the live embed |
-| `data/articles.js` | Full text of "AI Programs: The Rundown" |
-| `files/<section>/` | Images, PDFs, and videos, sorted by section |
-| `index.html` | Home: name, college, and work grouped by section |
-| `work.html?id=…` | One page per piece: gallery, PDF, video, or article |
-| `crimson.html` | Your Crimson writer page, embedded live, plus a list of your articles |
+| `data/content.js` | **Edit this file.** Name, college, bio, the category pages, and every piece of work |
+| `data/crimson.js` | All Crimson articles. Add new ones at the top; the article count updates automatically |
+| `files/<folder>/` | Images, PDFs, and videos |
+| `index.html` | Home: name and bio |
+| `writing.html`, `design.html`, `data-visualization.html`, `social-media.html`, `video.html` | One page per media type, linked in the top menu |
+| `work.html?id=…` | One page per piece: gallery, PDF, or video |
+| `crimson.html` | Your Crimson writer page, embedded live, plus the full article list |
 
 ## Adding a piece
 
 1. Put the file in `files/<section>/`. Use `.jpg`, `.webp`, `.png`, `.svg`, `.pdf`, or `.mp4`. Browsers can't show `.psd`, `.mov`, or `.docx` files.
-2. Copy an entry in `window.WORK` inside `data/content.js` and change its `id`, `title`, `section`, and file paths.
+2. Copy an entry in `window.WORK` inside `data/content.js` and change its `id`, `title`, `section` (`writing`, `design`, `dataviz`, `social`, or `video`), and file paths.
 
 Keep each file under **100 MB**, because GitHub rejects anything larger. To shrink a video:
 

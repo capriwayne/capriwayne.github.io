@@ -1,65 +1,52 @@
 /* =====================================================================
    EDIT THIS FILE TO UPDATE YOUR SITE.
-   - SITE        your name and college
-   - SECTIONS    the headings on the homepage, in order
-   - WORK        every piece; `section` decides where it appears
-   Files live in files/<section>/. Use web-friendly formats (jpg, webp, png, svg, pdf, mp4).
+   - SITE        name, college, bio
+   - SECTIONS    the category pages in the top menu, in order
+   - WORK        every piece; `section` decides which page it appears on
+   Crimson articles live in data/crimson.js.
    ===================================================================== */
 
 window.SITE = {
   name: "Capri Wayne",
   school: "Harvard College",
-  resume: "",   // e.g. "files/resume.pdf"; leave "" to hide the Résumé link
+  bio: "History & Literature and Art, Film & Visual Studies @ Harvard College",
+  resume: "",   // e.g. "files/resume.pdf"; leave "" to hide
   crimsonUrl: "https://www.thecrimson.com/writer/1220388/Capri_S._Wayne/"
 };
 
+/* Each section is its own page (file) in the top menu. */
 window.SECTIONS = [
-  { id: "journalism", label: "Journalism" },
-  { id: "design",     label: "Editorial Design" },
-  { id: "d3",         label: "Digital Data Design Institute at Harvard" },
-  { id: "dataviz",    label: "Data Visualization" },
-  { id: "social",     label: "Social Media" },
-  { id: "video",      label: "Video" }
+  { id: "writing", label: "Writing",            file: "writing.html" },
+  { id: "design",  label: "Design",             file: "design.html" },
+  { id: "dataviz", label: "Data Visualization", file: "data-visualization.html" },
+  { id: "social",  label: "Social Media",       file: "social-media.html" },
+  { id: "video",   label: "Video",              file: "video.html" }
 ];
 
 /* Fields
    id, title, section, kind          required
    outlet, date, summary              optional text
-   cover                              card image (defaults to first gallery image)
+   cover                              card image (defaults to first gallery image / video poster)
    link: { label, url }               button to an outside page
-   href                               make the card go straight to another page
    pdfs: [{ src, label }]             PDFs shown inline
    gallery: [{ src, caption }]        image grid (click to enlarge)
    video: { src, poster }             self-hosted mp4  (or youtube: "embed url")
-   article: "key"                     full text from data/articles.js
 */
 window.WORK = [
-  /* ---------------- Journalism ---------------- */
-  {
-    id: "crimson",
-    section: "journalism",
-    kind: "Byline page",
-    title: "The Harvard Crimson: Arts",
-    outlet: "The Harvard Crimson",
-    date: "2025–2026",
-    summary: "Film reviews, artist profiles, and SXSW coverage.",
-    href: "crimson.html",
-    cover: "files/journalism/crimson-cover.svg"
-  },
+  /* ---------------- Writing ---------------- */
   {
     id: "ai-careers",
-    section: "journalism",
+    section: "writing",
     kind: "Feature",
     title: "From Robots to Movie Stars: How AI Is Transforming Careers",
     outlet: "JingKids · AI print issue",
     date: "Summer 2023",
-    summary: "How AI has impacted professionals around the world.",
     cover: "files/journalism/ai-careers-cover.jpg",
     pdfs: [{ src: "files/journalism/ai-transforming-careers.pdf", label: "Feature (3 pages)" }]
   },
   {
     id: "andrew-ross",
-    section: "journalism",
+    section: "writing",
     kind: "Profile",
     title: "From Visual Major to World-Traveling Brooklyn Studio Artist",
     outlet: "The Muse · Dreyfoos School of the Arts",
@@ -67,43 +54,32 @@ window.WORK = [
     pdfs: [{ src: "files/design/andrew-ross-profile-spread.pdf", label: "Profile of Andrew Ross (2 pages)" }]
   },
 
-  /* ---------------- Editorial design ---------------- */
-  {
-    id: "muse-spreads",
-    section: "design",
-    kind: "Magazine spreads",
-    title: "The Muse: Magazine Spreads",
-    outlet: "The Muse · Dreyfoos School of the Arts",
-    cover: "files/design/history-of-campus-cover.jpg",
-    pdfs: [
-      { src: "files/design/history-of-campus-spread.pdf", label: "Floods, Termites, Time Capsules: A Rich History of Campus" },
-      { src: "files/design/andrew-ross-profile-spread.pdf", label: "From Visual Major to World-Traveling Brooklyn Studio Artist" }
-    ],
-    gallery: [{ src: "files/design/still-undefeated-spread.webp", caption: "Still Undefeated" }]
-  },
+  /* ---------------- Design ---------------- */
   {
     id: "infographics",
     section: "design",
     kind: "Infographics",
-    title: "Infographics: AI, the Metaverse, and Nuclear Power",
+    title: "Infographics: Nuclear Power, AI, and the Metaverse",
+    cover: "files/design/infographic-nuclear.webp",
     gallery: [
+      { src: "files/design/infographic-nuclear.webp", caption: "Nuclear Power" },
       { src: "files/design/infographic-ai.webp", caption: "AI: applications and implications" },
-      { src: "files/design/infographic-metaverse.jpg", caption: "Into the Metaverse" },
-      { src: "files/design/infographic-nuclear.webp", caption: "Nuclear Power" }
+      { src: "files/design/infographic-metaverse.jpg", caption: "Into the Metaverse" }
     ]
   },
   {
-    id: "city-pizza",
+    id: "scroll-paintings",
     section: "design",
-    kind: "Ad design",
-    title: "City Pizza Print Ad",
-    gallery: [{ src: "files/design/city-pizza-ad.webp" }]
+    kind: "Painting",
+    title: "Scroll Paintings",
+    outlet: "AFVS Sophomore Tutorial · Harvard",
+    date: "Spring 2026",
+    summary: "Scroll paintings inspired by traditional Chinese art.",
+    gallery: [{ src: "files/design/scroll-paintings.jpg" }]
   },
-
-  /* ---------------- D^3 ---------------- */
   {
     id: "genai-symposium",
-    section: "d3",
+    section: "design",
     kind: "Event campaign",
     title: "Harvard University Generative AI Symposium",
     outlet: "Digital Data Design Institute at Harvard",
@@ -117,7 +93,7 @@ window.WORK = [
   },
   {
     id: "genai-modules",
-    section: "d3",
+    section: "design",
     kind: "Graphics series",
     title: "GenAI Module Graphics",
     outlet: "Digital Data Design Institute at Harvard",
@@ -133,17 +109,17 @@ window.WORK = [
     ]
   },
   {
-    id: "ai-flip-sxsw",
-    section: "d3",
-    kind: "Social campaign",
-    title: "D³ × SXSW: The AI Flip",
-    outlet: "Digital Data Design Institute at Harvard",
-    gallery: [
-      { src: "files/d3/ai-flip-composite.webp" },
-      { src: "files/d3/ai-flip-speakers.webp" },
-      { src: "files/d3/ai-flip-illustration.webp" },
-      { src: "files/d3/sxsw-vote.webp" }
-    ]
+    id: "muse-spreads",
+    section: "design",
+    kind: "Magazine spreads",
+    title: "The Muse: Magazine Spreads",
+    outlet: "The Muse · Dreyfoos School of the Arts",
+    cover: "files/design/history-of-campus-cover.jpg",
+    pdfs: [
+      { src: "files/design/history-of-campus-spread.pdf", label: "Floods, Termites, Time Capsules: A Rich History of Campus" },
+      { src: "files/design/andrew-ross-profile-spread.pdf", label: "From Visual Major to World-Traveling Brooklyn Studio Artist" }
+    ],
+    gallery: [{ src: "files/design/still-undefeated-spread.webp", caption: "Still Undefeated" }]
   },
 
   /* ---------------- Data visualization ---------------- */
@@ -166,6 +142,21 @@ window.WORK = [
 
   /* ---------------- Social media ---------------- */
   {
+    id: "ai-flip-sxsw",
+    section: "social",
+    kind: "Social campaign",
+    title: "D³ × SXSW: The AI Flip",
+    outlet: "Digital Data Design Institute at Harvard",
+    date: "2025",
+    summary: "Social graphics for the Digital Data Design Institute's 2025 SXSW panel.",
+    gallery: [
+      { src: "files/d3/ai-flip-composite.webp" },
+      { src: "files/d3/ai-flip-speakers.webp" },
+      { src: "files/d3/ai-flip-illustration.webp" },
+      { src: "files/d3/sxsw-vote.webp" }
+    ]
+  },
+  {
     id: "the-muse",
     section: "social",
     kind: "Social graphics",
@@ -179,13 +170,6 @@ window.WORK = [
       { src: "files/social/eic-quote.webp", caption: "Staff quote" }
     ]
   },
-  {
-    id: "palace-museum",
-    section: "social",
-    kind: "Promo video",
-    title: "Palace Museum Promo",
-    video: { src: "files/video/palace-museum-promo.mp4", poster: "files/video/palace-poster.jpg" }
-  },
 
   /* ---------------- Video ---------------- */
   {
@@ -195,6 +179,26 @@ window.WORK = [
     title: "HNMUN Rewind 2026",
     outlet: "Harvard National Model United Nations",
     date: "2026",
+    summary: "Recap video of the 2026 HNMUN conference, screened for all delegates and staffers at the awards ceremony.",
     video: { src: "files/video/hnmun-rewind-2026.mp4", poster: "files/video/hnmun-poster.jpg" }
+  },
+  {
+    id: "echoes",
+    section: "video",
+    kind: "Short film",
+    title: "Echoes",
+    outlet: "AFVS Sophomore Tutorial · Harvard",
+    date: "Spring 2026",
+    cover: "https://i.ytimg.com/vi/tX1JmK7WzQc/hqdefault.jpg",
+    video: { youtube: "https://www.youtube-nocookie.com/embed/tX1JmK7WzQc" },
+    link: { label: "Watch on YouTube", url: "https://youtu.be/tX1JmK7WzQc" }
+  },
+  {
+    id: "palace-museum",
+    section: "video",
+    kind: "Promo video",
+    title: "Palace Museum Promo",
+    summary: "Mock promotional video for Discovery SE Asia's social media.",
+    video: { src: "files/video/palace-museum-promo.mp4", poster: "files/video/palace-poster.jpg" }
   }
 ];

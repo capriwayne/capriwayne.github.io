@@ -3,36 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Capri Wayne · Portfolio</title>
-  <meta name="description" content="Selected work by Capri Wayne, Harvard College.">
+  <title>Capri Wayne</title>
+  <meta name="description" content="Capri Wayne: writing, design, data visualization, social media, and video.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=10">
 </head>
 <body data-page="home">
-  <header class="masthead">
-    <div class="wrap masthead-inner">
-      <a class="brand" href="./" data-site="name"></a>
-      <nav class="nav" id="nav"></nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero wrap">
-      <h1 data-site="name"></h1>
-      <p class="school" data-site="school"></p>
-    </section>
-
-    <div class="wrap section-jump" id="section-jump" aria-label="Jump to section"></div>
-    <div id="sections"></div>
-  </main>
-
-  <footer class="wrap footer">
-    <span data-site="name"></span> · <span data-site="school"></span>
-  </footer>
-
-  <script src="data/content.js"></script>
-  <script src="assets/js/site.js"></script>
+  <header class="site-header" id="site-header"></header>
+  <main id="main"></main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <dialog class="lightbox" id="lightbox" aria-label="Enlarged image">
+    <button class="lb-close" aria-label="Close">×</button>
+    <img alt="">
+    <p class="lb-caption"></p>
+  </dialog>
+  <script src="data/content.js?v=10"></script>
+  <script src="assets/js/site.js?v=10"></script>
 </body>
 </html>
