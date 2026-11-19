@@ -10,6 +10,8 @@ window.SITE = {
   name: "Capri Wayne",
   school: "Harvard College",
   bio: "History & Literature and Art, Film & Visual Studies @ Harvard College",
+  email: "caprity6@gmail.com",
+  linkedin: "https://www.linkedin.com/in/capriwayne/",
   resume: "",   // e.g. "files/resume.pdf"; leave "" to hide
   crimsonUrl: "https://www.thecrimson.com/writer/1220388/Capri_S._Wayne/"
 };
@@ -21,6 +23,27 @@ window.SECTIONS = [
   { id: "dataviz", label: "Data Visualization", file: "data-visualization.html" },
   { id: "social",  label: "Social Media",       file: "social-media.html" },
   { id: "video",   label: "Video",              file: "video.html" }
+];
+
+/* Screenplays: shown under Journalism on the Writing page.
+   The Drive links are private, so the button says "Request to read". */
+window.SCREENPLAYS = [
+  {
+    title: "Dr. Mind",
+    genre: "Science Fiction",
+    year: "2023",
+    logline: "A young man discovers a way to wake his father up from a 5-year coma, but finds the awoken man to be someone far different than he remembered.",
+    awards: "Nellie and Fred Chasin Screenwriting Award (Student Showcase of Films)",
+    link: "https://drive.google.com/file/d/17AqEQalQ3fr14yxUJOzY3bPFTwvzS6za/view?usp=sharing"
+  },
+  {
+    title: "Sage",
+    genre: "Psychological Thriller",
+    year: "2022",
+    logline: "An aspiring artist faces competition and criticism for the first time at her high-stakes conservatory, developing a sense of inferiority, and slowly begins to lose her composure.",
+    awards: "Scholastic National Silver Medal in Dramatic Script; Finalist for the Nellie and Fred Chasin Screenwriting Award",
+    link: "https://drive.google.com/file/d/1fHX08y_WuxgR0viCnB5cbPZJtWE8WG9o/view?usp=sharing"
+  }
 ];
 
 /* Fields

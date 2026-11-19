@@ -22,7 +22,10 @@
     anchor: svg('<circle cx="12" cy="5" r="2"/><path d="M12 7v14"/><path d="M8 11h8"/><path d="M4.5 14.5c.8 3.6 3.9 6.5 7.5 6.5s6.7-2.9 7.5-6.5"/><path d="M3 15l1.5-.5L6 16"/><path d="M21 15l-1.5-.5L18 16"/>'),
     compass: svg('<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>'),
     wave: svg('<path d="M2 9c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/><path d="M2 15c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/>'),
-    play: svg('<circle cx="12" cy="12" r="9"/><path d="M10 8.5l5 3.5-5 3.5z"/>')
+    play: svg('<circle cx="12" cy="12" r="9"/><path d="M10 8.5l5 3.5-5 3.5z"/>'),
+    script: svg('<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 11h5M10 14h5M10 17h3"/>'),
+    mail: svg('<rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/>'),
+    linkedin: svg('<rect x="3" y="3" width="18" height="18" rx="3.5"/><path d="M8 10.5V16"/><circle cx="8" cy="7.6" r=".4" fill="currentColor"/><path d="M11.5 16v-5.5"/><path d="M11.5 13c0-1.6 1-2.6 2.4-2.6s2.1 1 2.1 2.6V16"/>')
   };
   // Anchor favicon
   if (!document.querySelector('link[rel="icon"]')) {
@@ -30,6 +33,19 @@
     l.href = "data:image/svg+xml," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1d6fa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v14M8 11h8M4.5 14.5c.8 3.6 3.9 6.5 7.5 6.5s6.7-2.9 7.5-6.5"/></svg>`);
     document.head.appendChild(l);
   }
+
+  /* Click ripple, like a drop hitting water */
+  document.addEventListener("pointerdown", (e) => {
+    if (e.button !== 0 || reduceMotion()) return;
+    ["", " r2"].forEach((cls) => {
+      const r = document.createElement("span");
+      r.className = "ripple" + cls;
+      r.style.left = e.clientX + "px";
+      r.style.top = e.clientY + "px";
+      r.addEventListener("animationend", () => r.remove());
+      document.body.appendChild(r);
+    });
+  }, { passive: true });
 
   const page = body.dataset.page;
   const currentSection =
@@ -64,6 +80,10 @@
       <section class="home wrap" id="home">
         <h1 class="home-name">${ICON.compass}<span class="home-name-text">${esc(S.name)}</span></h1>
         <p class="home-bio">${esc(S.bio)}</p>
+        <ul class="home-contact">
+          ${S.email ? `<li><a href="mailto:${esc(S.email)}">${ICON.mail}<span>${esc(S.email)}</span></a></li>` : ""}
+          ${S.linkedin ? `<li><a href="${esc(S.linkedin)}" target="_blank" rel="noopener">${ICON.linkedin}<span>LinkedIn</span></a></li>` : ""}
+        </ul>
         <svg class="home-waves" viewBox="0 0 600 64" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
           <path/><path/>
         </svg>
@@ -200,7 +220,8 @@
     if (!sec) return;
     const items = W.filter((w) => w.section === sec.id);
     const isWriting = sec.id === "writing" && ARTICLES.length;
-    const total = items.length + (isWriting ? ARTICLES.length : 0);
+    const plays = sec.id === "writing" ? (window.SCREENPLAYS || []) : [];
+    const total = items.length + (isWriting ? ARTICLES.length : 0) + plays.length;
 
     $("#main").innerHTML = `
       <section class="wrap page-head">
@@ -212,8 +233,24 @@
         <section class="wrap block">
           ${isWriting ? `<div class="block-head"><h2>Features &amp; Profiles</h2><span class="block-count">${items.length}</span></div>` : ""}
           <div class="grid">${items.map(card).join("")}</div>
+        </section>` : ""}
+      ${plays.length ? `
+        <section class="wrap block">
+          <div class="block-head"><h2>Screenwriting</h2><span class="block-count">${plays.length}</span></div>
+          <div class="plays">${plays.map(screenplay).join("")}</div>
         </section>` : ""}`;
     if (isWriting) wireCrimson();
+  }
+
+  function screenplay(p) {
+    return `
+      <article class="play-card">
+        <p class="kicker">${esc(p.genre)} · ${esc(p.year)}</p>
+        <h3>${esc(p.title)}</h3>
+        <p class="logline">${esc(p.logline)}</p>
+        ${p.awards ? `<p class="awards"><span>Awarded</span>${esc(p.awards)}</p>` : ""}
+        ${p.link ? `<a class="btn btn-ghost" href="${esc(p.link)}" target="_blank" rel="noopener">${ICON.script}Request to read ↗</a>` : ""}
+      </article>`;
   }
 
   function card(w) {
