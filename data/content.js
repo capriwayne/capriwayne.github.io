@@ -25,6 +25,21 @@ window.SECTIONS = [
   { id: "video",   label: "Video",              file: "video.html" }
 ];
 
+/* Message in a bottle: a tiny bottle floats on the footer wave; clicking it shows one of these notes.
+   Add as many as you like (one per line, in quotes, separated by commas). Leave it empty to hide the bottle.
+   Example:
+     window.BOTTLE_NOTES = [
+       "Favorite film this year: ...",
+       "Currently reading: ...",
+       "Fun fact: ..."
+     ];
+*/
+window.BOTTLE_NOTES = [
+  "Favorite film this year: Wishful Thinking",
+  "Currently reading: Empire of AI - Karen Hao",
+  "Song on repeat: I'd Rather Be Alone - Tinashe"
+];
+
 /* Screenplays: shown under Journalism on the Writing page.
    The Drive links are private, so the button says "Request to read". */
 window.SCREENPLAYS = [
@@ -194,14 +209,24 @@ window.WORK = [
     ]
   },
 
-  /* ---------------- Video ---------------- */
+  /* ---------------- Video (newest first) ---------------- */
+  {
+    id: "ai-at-harvard",
+    section: "video",
+    kind: "Video essay",
+    title: "AI at Harvard",
+    outlet: "TDM155AI · Media Production in the Age of AI",
+    date: "Nov 2026",
+    summary: "A video essay made for TDM155AI (Media Production in the Age of AI), where I experimented with Claude for graphic video design.",
+    video: { src: "files/video/ai-at-harvard.mp4", poster: "files/video/ai-at-harvard-poster.jpg" }
+  },
   {
     id: "hnmun-rewind",
     section: "video",
     kind: "Recap video",
     title: "HNMUN Rewind 2026",
     outlet: "Harvard National Model United Nations",
-    date: "2026",
+    date: "Mar 2026",
     summary: "Recap video of the 2026 HNMUN conference, screened for all delegates and staffers at the awards ceremony.",
     video: { src: "files/video/hnmun-rewind-2026.mp4", poster: "files/video/hnmun-poster.jpg" }
   },
@@ -211,7 +236,7 @@ window.WORK = [
     kind: "Short film",
     title: "Echoes",
     outlet: "AFVS Sophomore Tutorial · Harvard",
-    date: "Spring 2026",
+    date: "Mar 2026",
     cover: "https://i.ytimg.com/vi/tX1JmK7WzQc/hqdefault.jpg",
     video: { youtube: "https://www.youtube-nocookie.com/embed/tX1JmK7WzQc" },
     link: { label: "Watch on YouTube", url: "https://youtu.be/tX1JmK7WzQc" }
@@ -221,7 +246,32 @@ window.WORK = [
     section: "video",
     kind: "Promo video",
     title: "Palace Museum Promo",
+    cover: "files/video/palace-cover.jpg",
+    date: "Jun 2025",
     summary: "Mock promotional video for Discovery SE Asia's social media.",
     video: { src: "files/video/palace-museum-promo.mp4", poster: "files/video/palace-poster.jpg" }
+  },
+  {
+    id: "schaf",
+    section: "video",
+    kind: "Short film",
+    title: "Schaf",
+    outlet: "Dreyfoos School of the Arts",
+    date: "Oct 2023",
+    summary: "A short film I directed, wrote and shot for Dreyfoos School of the Arts' annual Halloween film competition.",
+    cover: "https://i.ytimg.com/vi/vxZLn8g_K_A/hqdefault.jpg",
+    video: { youtube: "https://www.youtube-nocookie.com/embed/vxZLn8g_K_A" },
+    link: { label: "Watch on YouTube", url: "https://youtu.be/vxZLn8g_K_A" }
+  },
+  {
+    id: "holiday-gala",
+    section: "video",
+    kind: "Promo video",
+    title: "Virtual Winter Holiday Gala Show",
+    date: "Nov 2020",
+    summary: "During the COVID-19 pandemic, I brought together performers for a virtual holiday concert, which played at Memorial Hospitals and local retirement homes in South Florida.",
+    cover: "files/video/gala-cover.jpg",
+    video: { youtube: "https://drive.google.com/file/d/1FM0LE_R7h-Qgj8S55NZD91BUVRkNzxxR/preview" },
+    link: { label: "Watch on Google Drive", url: "https://drive.google.com/file/d/1FM0LE_R7h-Qgj8S55NZD91BUVRkNzxxR/view?usp=sharing" }
   }
 ];
